@@ -13,6 +13,9 @@ from selenium.webdriver.support import expected_conditions as EC
 
 service = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service)
+qdb = "15786;22059;24148;24149;15787;22061;15788;22068;22073;15790;1792;26086;31026;31024;38489"
+makeB= "2202;148;1897;22060;1898;149;215;22066;22071;384;179;1899"
+intense= "2184;138;24966;1854;151;210;22065;22070;1283;791;1855"
 
 def login_sgi(email, password):
     print("entrando com usuário e senha")
@@ -51,10 +54,13 @@ def relatorio_vendas_corte_em_pedidos():
     selector_element_by_id("ContentPlaceHolder1_campanhaInicioDropDown_d1","02/2023").click()
     driver.find_element(By.ID, "ContentPlaceHolder1_txtEstruturaComercialCodigo_T2").send_keys(649)
     driver.find_element(By.ID, 'ContentPlaceHolder1_txtCodigoModeloComercial_T2').send_keys(3)
-    driver.find_element(By.ID, 'ContentPlaceHolder1_tipoItemPedidoDropDown_d1').click()
     selector_element_by_id("ContentPlaceHolder1_tipoItemPedidoDropDown_d1","Venda").click()
     selector_element_by_id('ContentPlaceHolder1_tipoBuscaItemDropDown_d1','Item Pedido').click()
-
+    selector_element_by_id('ContentPlaceHolder1_tipoRelatProdutoDropDown_d1','Analítico').click()
+    selector_element_by_id('ContentPlaceHolder1_ddlTipoEstruturaProduto_d1','Preencher manualmente').click()
+    codEstrProd = intense
+    driver.find_element(By.ID,'ContentPlaceHolder1_listaEstruturaProduto_T2').send_keys(codEstrProd)
+    driver.find_element(By.ID,'ContentPlaceHolder1_buscarButton_btn').click()
 
 def selector_element_by_id(id, optionText):
     driver.find_element(By.ID, id).click()
